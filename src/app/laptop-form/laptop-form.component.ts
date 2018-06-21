@@ -14,9 +14,9 @@ export class LaptopFormComponent {
 
   constructor(private http: HttpClient) {}
 
-  oses = ['MAC', 'windows'];
+  oses = ['MAC', 'Windows'];
 
-  qualities = ['OK', 'good', 'very good', 'perfect', 'excellent'];
+  qualities = ['OK', 'Good', 'Very good', 'Excellent', 'Perfect'];
 
   model = new Laptop(42, this.oses[0], this.qualities[1], 0, 3000);
 
@@ -51,14 +51,13 @@ export class LaptopFormComponent {
     this.submitted = false;
   }
 
+  // TODO: Clean
   /*
   myLaptop(): Laptop {
     let laptop =  new Laptop(42, this.oses[0], this.qualities[1], 0, 3000);
     console.log('My laptop is called ' + JSON.stringify(laptop));
     return laptop;
   }*/
-
-  //////// NOT SHOWN IN DOCS ////////
 
   // Reveal in html:
   //   Name via form.controls = {{showFormControls(laptopForm)}}
