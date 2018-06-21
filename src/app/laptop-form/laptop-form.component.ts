@@ -8,6 +8,8 @@ import { Laptop }    from '../laptop';
   templateUrl: './laptop-form.component.html',
   styleUrls: ['./laptop-form.component.css']
 })
+
+
 export class LaptopFormComponent {
 
   constructor(private http: HttpClient) {}
@@ -22,6 +24,8 @@ export class LaptopFormComponent {
 
   sugg = "";
 
+
+  // TODO: create service
   onSubmit() {
     this.submitted = true;
     const req = this.http.post('http://127.0.0.1:8080/api/', this.model)
@@ -40,15 +44,18 @@ export class LaptopFormComponent {
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.model); }
 
-  newLaptop() {
+  reset() {
     this.model = new Laptop(42, this.oses[0], this.qualities[1], 0, 3000);
+    this.sugg = "";
+    this.submitted = false;
   }
 
+  /*
   myLaptop(): Laptop {
     let laptop =  new Laptop(42, this.oses[0], this.qualities[1], 0, 3000);
     console.log('My laptop is called ' + JSON.stringify(laptop));
     return laptop;
-  }
+  }*/
 
   //////// NOT SHOWN IN DOCS ////////
 

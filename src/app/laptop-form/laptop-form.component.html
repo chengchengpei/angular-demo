@@ -1,5 +1,6 @@
 <div class="container">
-  <div [hidden]="submitted">
+  <div>
+    <!--<div [hidden]="submitted">-->
     <h1>Laptop Form</h1>
 
     <form (ngSubmit)="onSubmit()" #laptopForm="ngForm">
@@ -58,12 +59,8 @@
       </div>
 
       <button type="submit" class="btn btn-success" [disabled]="!laptopForm.form.valid">Submit</button>
-      <button type="button" class="btn btn-default" (click)="newLaptop(); laptopForm.reset()">New Laptop</button>
-      <i>with</i> reset
-
       &nbsp;&nbsp;
-      <button type="button" class="btn btn-default" (click)="newLaptop()">New Laptop</button>
-      <i>without</i> reset
+      <button type="button" class="btn btn-default" (click)="reset()">Reset</button>
 
      <!-- NOT SHOWN IN DOCS -->
       <!--
