@@ -36,7 +36,8 @@ export class LaptopFormComponent {
           console.log(res, typeof(res));
         },
         err => {
-          console.log("Error occured:", err);
+          console.log("Error:", err);
+          this.sugg = "Error";
         }
       );
   }
