@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
 import { Laptop }    from '../laptop';
 
 @Component({
@@ -20,24 +21,52 @@ export class LaptopFormComponent {
 
   model = new Laptop(42, this.oses[0], this.qualities[1], 0, 3000);
 
+  displayedColumns = ['title', 'description', 'url', 'price'];
+
   submitted = false;
+
+  errMsg = "";
+
+  showTable = false;
 
   sugg = "";
 
+  laptopArray = [];
+
 
   // TODO: create service
+  // TODO: Change API endpoint
   onSubmit() {
     this.submitted = true;
     const req = this.http.post('http://127.0.0.1:8080/api/', this.model)
       .subscribe(
         res => {
-          this.sugg = res.os;
-          console.log("heheheheheh");
-          console.log(res, typeof(res));
+          this.laptopArray = res as any;
+          this.showTable = true;
+          this.errMsg = "";
         },
         err => {
           console.log("Error:", err);
-          this.sugg = "Error";
+          this.errMsg = "Error";
+          this.showTable = false;
+        }
+      );
+  }
+
+
+  fakeData() {
+    this.submitted = true;
+    const req = this.http.post('http://127.0.0.1:8080/api/', this.model)
+      .subscribe(
+        res => {
+          this.laptopArray = res as any;
+          this.showTable = true;
+          this.errMsg = "";
+        },
+        err => {
+          console.log("Error:", err);
+          this.errMsg = "Error";
+          this.showTable = false;
         }
       );
   }
@@ -47,7 +76,9 @@ export class LaptopFormComponent {
 
   reset() {
     this.model = new Laptop(42, this.oses[0], this.qualities[1], 0, 3000);
-    this.sugg = "";
+    this.errMsg = "";
+    this.showTable = false;
+    this.laptopArray = [];
     this.submitted = false;
   }
 
