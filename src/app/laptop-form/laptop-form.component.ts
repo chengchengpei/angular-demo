@@ -27,7 +27,7 @@ export class LaptopFormComponent {
     const req = this.http.post('http://127.0.0.1:8080/api/', this.model)
       .subscribe(
         res => {
-          this.sugg = res;
+          this.sugg = res.os;
           console.log("heheheheheh");
           console.log(res, typeof(res));
         },
