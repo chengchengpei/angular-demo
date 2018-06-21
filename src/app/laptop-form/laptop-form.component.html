@@ -75,6 +75,7 @@
      <!-- - -->
     </form>
   </div>
+  <div ng-model="sugg" [hidden]="!sugg">{{sugg | json}}</div>
 
   <!--
   <div [hidden]="!submitted">

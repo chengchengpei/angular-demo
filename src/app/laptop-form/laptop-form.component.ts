@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { Laptop }    from '../laptop';
 
@@ -9,6 +10,8 @@ import { Laptop }    from '../laptop';
 })
 export class LaptopFormComponent {
 
+  constructor(private http: HttpClient) {}
+
   oses = ['MAC', 'windows'];
 
   qualities = ['OK', 'good', 'very good', 'perfect', 'excellent'];
@@ -17,7 +20,22 @@ export class LaptopFormComponent {
 
   submitted = false;
 
-  onSubmit() { this.submitted = true; }
+  sugg = "";
+
+  onSubmit() {
+    this.submitted = true;
+    const req = this.http.post('http://127.0.0.1:8080/api/', this.model)
+      .subscribe(
+        res => {
+          this.sugg = res;
+          console.log("heheheheheh");
+          console.log(res, typeof(res));
+        },
+        err => {
+          console.log("Error occured:", err);
+        }
+      );
+  }
 
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.model); }
