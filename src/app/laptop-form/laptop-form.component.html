@@ -1,0 +1,100 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Laptop Form</h1>
+
+    <form (ngSubmit)="onSubmit()" #laptopForm="ngForm">
+      <!-- OS -->
+      <div class="form-group">
+        <label for="os">OS</label>
+        <select class="form-control" id="os"
+                required
+                [(ngModel)]="model.os" name="os"
+                #os="ngModel">
+          <option *ngFor="let os of oses" [value]="os">{{os}}</option>
+        </select>
+        <div [hidden]="os.valid" class="alert alert-danger">
+          OS is required
+        </div>
+      </div>
+
+      <!-- Quality -->
+      <div class="form-group">
+        <label for="os">OS</label>
+        <select class="form-control" id="quality"
+                required
+                [(ngModel)]="model.quality" name="quality"
+                #quality="ngModel">
+          <option *ngFor="let quality of qualities" [value]="quality">{{quality}}</option>
+        </select>
+        <div [hidden]="quality.valid" class="alert alert-danger">
+          Quality is required
+        </div>
+      </div>
+
+      <!-- Min price -->
+      <div class="form-group">
+        <label for="minprice">Min price</label>
+        <input type="number" class="form-control" id="minprice"
+               required
+               [(ngModel)]="model.minprice" name="minprice"
+               min="0"
+               #minprice="ngModel">
+        <div [hidden]="minprice.valid"
+             class="alert alert-danger">
+          Min price is required
+        </div>
+      </div>
+
+      <!-- Max price -->
+      <div class="form-group">
+        <label for="maxprice">Min price</label>
+        <input type="number" class="form-control" id="maxprice"
+               required
+               min="0"
+               [(ngModel)]="model.maxprice" name="maxprice"
+               #maxprice="ngModel">
+        <div [hidden]="maxprice.valid"
+             class="alert alert-danger">
+          Max price is required
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!laptopForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-default" (click)="newLaptop(); laptopForm.reset()">New Laptop</button>
+      <i>with</i> reset
+
+      &nbsp;&nbsp;
+      <button type="button" class="btn btn-default" (click)="newLaptop()">New Laptop</button>
+      <i>without</i> reset
+
+     <!-- NOT SHOWN IN DOCS -->
+      <!--
+      <div>
+        <hr>
+        Name via form.controls = {{showFormControls(laptopForm)}}
+      </div>
+      -->
+     <!-- - -->
+    </form>
+  </div>
+
+  <!--
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">Name</div>
+      <div class="col-xs-9  pull-left">{{ model.name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Alter Ego</div>
+      <div class="col-xs-9 pull-left">{{ model.alterEgo }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Power</div>
+      <div class="col-xs-9 pull-left">{{ model.power }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+  </div>
+  -->
+</div>
