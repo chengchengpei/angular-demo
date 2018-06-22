@@ -28,7 +28,7 @@ export class LaptopFormComponent {
 
   model = new Laptop(this.oses[0], this.qualities[1], 0, 3000);
 
-  displayedColumns = ['manufacturer', 'description', 'quality', 'price'];
+  displayedColumns = ['manufacturer', 'description', 'quality', 'price', 'predprice'];
 
   submitted = false;
 
