@@ -55,7 +55,8 @@ app.use(function(req, res, next) {
 
 
 router.post('/', function(req, res) {
-    res.json(fackResp);
+  console.log(req.body);
+  res.json(fackResp);
 });
 
 app.use('/api', router);

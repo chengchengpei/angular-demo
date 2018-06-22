@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
-import { Laptop }    from '../laptop';
+import { Laptop } from '../laptop';
 
 @Component({
   selector: 'app-laptop-form',
@@ -19,7 +19,7 @@ export class LaptopFormComponent {
 
   qualities = ['OK', 'Good', 'Very good', 'Excellent', 'Perfect'];
 
-  model = new Laptop(42, this.oses[0], this.qualities[1], 0, 3000);
+  model = new Laptop(this.oses[0], this.qualities[1], 0, 3000);
 
   displayedColumns = ['title', 'description', 'url', 'price'];
 
@@ -72,10 +72,12 @@ export class LaptopFormComponent {
   }
 
   // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.model); }
+  get diagnostic() {
+    return JSON.stringify(this.model);
+  }
 
   reset() {
-    this.model = new Laptop(42, this.oses[0], this.qualities[1], 0, 3000);
+    this.model = new Laptop(this.oses[0], this.qualities[1], 0, 3000);
     this.errMsg = "";
     this.showTable = false;
     this.laptopArray = [];
@@ -83,20 +85,10 @@ export class LaptopFormComponent {
   }
 
   // TODO: Clean
-  /*
-  myLaptop(): Laptop {
-    let laptop =  new Laptop(42, this.oses[0], this.qualities[1], 0, 3000);
-    console.log('My laptop is called ' + JSON.stringify(laptop));
-    return laptop;
-  }*/
-
   // Reveal in html:
   //   Name via form.controls = {{showFormControls(laptopForm)}}
   showFormControls(form: any) {
     return form && form.controls['os'] &&
     form.controls['quality'].value;
   }
-
-  /////////////////////////////
-
 }
