@@ -15,9 +15,16 @@ export class LaptopFormComponent {
 
   constructor(private http: HttpClient) {}
 
-  oses = ['MAC', 'Windows'];
+  oses = ['MAC', 'Windows', 'Linux'];
 
   qualities = ['OK', 'Good', 'Very good', 'Excellent', 'Perfect'];
+
+  map = new Map<String, String>()
+    .set("OK","1")
+    .set("Good","2")
+    .set("Very good","3")
+    .set("Excellent","4")
+    .set("Perfect","5");
 
   model = new Laptop(this.oses[0], this.qualities[1], 0, 3000);
 
@@ -37,17 +44,29 @@ export class LaptopFormComponent {
   // TODO: create service
   // TODO: Change API endpoint
   onSubmit() {
+
     this.submitted = true;
-    const req = this.http.post('http://127.0.0.1:8080/api/', this.model)
+    let data = { ...this.model };
+
+    // console.log("1 Map:" + JSON.stringify(this.map));
+
+    data.quality = this.map.get(data.quality);
+
+    // console.log("2 Map:" + this.map);
+
+    console.log("Data:" + JSON.stringify(data));
+
+    const req = this.http.post('https://mapleleafs-207919.appspot.com/_ah/api/echo/v1/search', data)
       .subscribe(
         res => {
+          console.log("response:" + JSON.stringify(res));
           this.laptopArray = res as any;
           this.showTable = true;
           this.errMsg = "";
         },
         err => {
           console.log("Error:", err);
-          this.errMsg = "Error";
+          this.errMsg = "Error:" + JSON.stringify(err);
           this.showTable = false;
         }
       );
