@@ -19,7 +19,7 @@ export class LaptopFormComponent {
 
   qualities = ['OK', 'Good', 'Very good', 'Excellent', 'Perfect'];
 
-  map = new Map<String, String>()
+  map = new Map<string, string>()
     .set("OK","1")
     .set("Good","2")
     .set("Very good","3")
@@ -28,7 +28,7 @@ export class LaptopFormComponent {
 
   model = new Laptop(this.oses[0], this.qualities[1], 0, 3000);
 
-  displayedColumns = ['title', 'description', 'url', 'price'];
+  displayedColumns = ['manufacturer', 'description', 'quality', 'price'];
 
   submitted = false;
 
